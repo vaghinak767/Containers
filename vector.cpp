@@ -136,21 +136,6 @@ void Vector::insert(int index, int value)
     ++m_size;
 }
 
-Vector &Vector::operator=(const Vector &other)
-{
-    if (this != &other)
-    {
-        this->clear();
-        this->m_capacity = other.m_capacity;
-        this->arr = new int[m_capacity];
-        this->m_size = other.m_size;
-        for(int i = 0; i < m_size; ++i)
-        {
-            this->arr[i] = other.arr[i];
-        } 
-    }
-    return *this;
-}
 
 void Vector::display()
 {
@@ -272,3 +257,79 @@ void Vector::erase(int first, int last)
     }
     m_size -= (last - first + 1);
 }
+
+Vector &Vector::operator=(const Vector &other)
+{
+    if (this != &other)
+    {
+        this->clear();
+        this->m_capacity = other.m_capacity;
+        this->arr = new int[m_capacity];
+        this->m_size = other.m_size;
+        for(int i = 0; i < m_size; ++i)
+        {
+            this->arr[i] = other.arr[i];
+        } 
+    }
+    return *this;
+}
+const int Vector::operator[](int index)
+{
+    return this->arr[index];
+}
+
+const Vector Vector::operator+(Vector& ob)
+{
+    Vector tmp;
+    if(ob.m_size >= this->m_size)
+    {
+        for(int i = 0; i < this->m_size; ++i)
+        {
+            tmp.push_back(this->arr[i] + ob[i]);
+        }
+        for(int i = this->m_size; i < ob.m_size; ++i)
+        {
+            tmp.push_back(ob[i]);
+        }
+    }
+    else
+    {
+        for(int i = 0; i < ob.m_size; ++i)
+        {
+            tmp.push_back(this->arr[i] + ob[i]);
+        }
+        for(int i = ob.m_size; i < this->m_size; ++i)
+        {
+            tmp.push_back(this->arr[i]);
+        }
+    }
+    return tmp;
+}
+
+// const Vector operator-(Vector& ob)
+// {
+//     Vector tmp;
+//     if(ob.m_size >= this->m_size)
+//     {
+//         for(int i = 0; i < this->m_size; ++i)
+//         {
+//             tmp.push_back(this->arr[i] + ob[i]);
+//         }
+//         for(int i = this->m_size; i < ob.m_size; ++i)
+//         {
+//             tmp.push_back(ob[i]);
+//         }
+//     }
+//     else
+//     {
+//         for(int i = 0; i < ob.m_size; ++i)
+//         {
+//             tmp.push_back(this->arr[i] + ob[i]);
+//         }
+//         for(int i = ob.m_size; i < this->m_size; ++i)
+//         {
+//             tmp.push_back(this->arr[i]);
+//         }
+//     }
+//     return tmp;
+// }
