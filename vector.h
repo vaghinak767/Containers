@@ -26,6 +26,7 @@ class Vector
         Vector(int, int);
         //Vector(int first, int last);
         Vector(std::initializer_list<int>);
+        ~Vector();
         int size();
         int capacity();
         bool empty();
@@ -35,11 +36,9 @@ class Vector
         int *data();
         void clear();
         void insert(int, int);
-        Vector& operator=(const Vector& );
         void display();
         void swap(Vector&);
         void assign(int, const int&);
-        int operator[](int);
         int front();
         int& back();
         int* begin();
@@ -48,7 +47,10 @@ class Vector
         void resize(int);
         void erase(int);
         void erase(int, int);
-        ~Vector();
+        Vector& operator=(const Vector&);
+        const int operator[](int index);
+        const Vector operator+(Vector&);
+        //const Vector operator-(Vector&);
 };
 
 #endif
