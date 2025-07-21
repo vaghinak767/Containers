@@ -1,8 +1,6 @@
 #include "cycleQueue.h"
 // #ifndef FFFF
 // #define FFFF
-#include "Node.h"
-#include "RBNode.h"
 // #endif
 template <class T>
 T &Queue<T>::front()
@@ -81,5 +79,3 @@ void Queue<T>::resize()
     point = m_size;
     tmp = nullptr;
 }
-template class Queue<RBNode<int> *>;
-template class Queue<int>;
